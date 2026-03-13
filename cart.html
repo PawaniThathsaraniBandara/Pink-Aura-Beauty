@@ -87,3 +87,113 @@
                     </div>
                 </div>
             </div>
+ <!-- View 2: Checkout Form (Initially Hidden) -->
+            <div id="checkoutView" class="d-none animate__animated animate__fadeIn">
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="card border-0 shadow-sm p-4" style="border-radius: 20px;">
+                            <h5 class="mb-4 fw-bold"><i class="fas fa-truck me-2"></i> Shipping Details</h5>
+                            <form id="checkoutForm">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-600">Full Name *</label>
+                                        <input type="text" class="form-control" required style="border-radius: 10px;">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-600">Phone Number *</label>
+                                        <input type="tel" class="form-control" required style="border-radius: 10px;">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-600">Delivery Address *</label>
+                                    <textarea class="form-control" rows="3" required
+                                        style="border-radius: 10px;"></textarea>
+                                </div>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-600">City *</label>
+                                        <input type="text" class="form-control" required style="border-radius: 10px;">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-600">Postal Code</label>
+                                        <input type="text" class="form-control" style="border-radius: 10px;">
+                                    </div>
+                                </div>
+
+                                <h5 class="mb-4 fw-bold mt-5"><i class="fas fa-credit-card me-2"></i> Payment Method
+                                </h5>
+                                <div class="payment-options">
+                                    <div class="form-check border p-3 mb-2"
+                                        style="border-radius: 10px; cursor: pointer;">
+                                        <input class="form-check-input ms-0 me-3" type="radio" name="payMethod" id="cod"
+                                            checked>
+                                        <label class="form-check-label w-100" for="cod">
+                                            <strong>Cash on Delivery (COD)</strong>
+                                            <div class="small text-muted">Pay when you receive your order.</div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check border p-3 mb-2"
+                                        style="border-radius: 10px; cursor: pointer; opacity: 0.6;">
+                                        <input class="form-check-input ms-0 me-3" type="radio" name="payMethod"
+                                            id="card" disabled>
+                                        <label class="form-check-label w-100" for="card">
+                                            <strong>Credit / Debit Card</strong>
+                                            <div class="small text-muted">Coming soon! Secure online payment.</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card border-0 shadow-sm p-4 sticky-top" style="border-radius: 20px; top: 100px;">
+                            <h5 class="mb-4 fw-bold">Confirm Order</h5>
+                            <div class="order-preview mb-3" id="checkoutPreview">
+                                <!-- Minimal preview here -->
+                            </div>
+                            <div class="d-flex justify-content-between mb-4 border-top pt-3">
+                                <span class="h5 mb-0 fw-bold">Total to Pay</span>
+                                <span id="checkoutTotal" class="h5 mb-0 fw-bold text-pink">Rs.0</span>
+                            </div>
+                            <button class="btn-pink w-100 py-3 mt-2" style="font-size: 1.1rem;"
+                                onclick="placeOrder()">Place Order (COD)</button>
+                            <button class="btn btn-link text-muted w-100 mt-2 text-decoration-none small"
+                                onclick="hideCheckout()">
+                                <i class="fas fa-arrow-left me-1"></i> Back to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View 3: Success Message (Initially Hidden) -->
+            <div id="orderSuccessView" class="d-none animate__animated animate__fadeInUp">
+                <div class="card border-0 shadow-lg p-5 text-center mx-auto"
+                    style="border-radius: 30px; max-width: 600px; background: linear-gradient(145deg, #ffffff, #fff5f8);">
+                    <div class="order-success-icon-wrap mb-4">
+                        <div class="checkmark-circle">
+                            <div class="background"></div>
+                            <div class="checkmark draw"></div>
+                        </div>
+                    </div>
+                    <h2 class="fw-bold mb-3" style="color: #333;">Order <span class="text-pink">Confirmed!</span></h2>
+                    <p class="text-muted mb-4 px-md-5">Thank you for your choice! Your beauty essentials are being
+                        prepared with love and will be with you soon.</p>
+
+                    <div class="order-id-box p-3 mb-4 d-inline-block mx-auto"
+                        style="background: rgba(233, 30, 140, 0.05); border: 1px dashed #e91e8c; border-radius: 12px;">
+                        <span class="text-muted small d-block mb-1">Order Tracking ID</span>
+                        <h5 class="mb-0 fw-bold text-pink" id="displayOrderId">#PAB-00000</h5>
+                    </div>
+
+                    <div class="success-actions mt-2 d-flex flex-column gap-3 align-items-center">
+                        <a href="index.html" class="btn-pink px-5 py-3 w-100"
+                            style="font-size: 1.1rem; border-radius: 15px;">Continue Shopping</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
