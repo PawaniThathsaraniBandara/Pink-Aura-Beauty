@@ -1,0 +1,60 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ---- Reset ---- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fceef5;
+    /* Slightly darker muted rose background */
+    color: #222;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* ---- Navbar ---- */
+.navbar {
+    background-color: #880e4f !important;
+    /* Rich deep berry (lighter than before) */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fceef5 !important;
+    /* Light rose for contrast */
+}
+
+.nav-link {
+    color: #fceef5 !important;
+    /* Light rose */
+    font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #ff80ab !important;
+    /* Brighter pink for active state */
+}
+
+.navbar-toggler {
+    border-color: rgba(252, 238, 245, 0.5);
+}
+
+.navbar-toggler-icon {
+    filter: invert(1) brightness(2);
+    /* Make icon white/light */
+}
