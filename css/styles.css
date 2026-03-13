@@ -58,3 +58,49 @@ img {
     filter: invert(1) brightness(2);
     /* Make icon white/light */
 }
+/* ---- Hero ---- */
+.hero {
+    background: linear-gradient(135deg, #ffe4f0, #fce4ec);
+    padding: 80px 0;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-main {
+    background: linear-gradient(rgba(136, 14, 79, 0.4), rgba(136, 14, 79, 0.4)), url('https://media.istockphoto.com/id/1385314008/photo/beauty-model-face-make-up-with-beige-lipstick-and-perfect-eyeliner-woman-skin-and-lips-care.jpg?s=1024x1024&w=is&k=20&c=cKASFaK6R2ioX1J_QPWXnoR-81m_D3zail90fknQUAY=');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-1 {
+    background: linear-gradient(rgba(136, 14, 79, 0.3), rgba(136, 14, 79, 0.3)), url('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=1600&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-2 {
+    background: linear-gradient(rgba(136, 14, 79, 0.4), rgba(136, 14, 79, 0.4)), url('https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?q=80&w=1600&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+
+.hero h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.hero h1 span {
+    color: #e91e8c;
+}
+
+.hero p {
+    font-size: 1rem;
+    color: #666;
+    max-width: 500px;
+    margin: 0 auto 25px;
+}
