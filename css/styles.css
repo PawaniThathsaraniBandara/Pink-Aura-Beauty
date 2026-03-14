@@ -308,3 +308,80 @@ section {
     color: #fff;
 }
 
+/* ---- Filter Tabs ---- */
+.filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.filter-tab {
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #666;
+    padding: 7px 18px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.filter-tab:hover {
+    border-color: #e91e8c;
+    color: #e91e8c;
+}
+
+.filter-tab.active {
+    background: #e91e8c;
+    border-color: #e91e8c;
+    color: #fff;
+}
+
+/* ---- Testimonials ---- */
+.testimonial-card {
+    background: #fff;
+    border: 1px solid #f0c4db;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.testimonial-card p {
+    font-size: 0.9rem;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.testimonial-card .author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.testimonial-card .avatar {
+    width: 42px;
+    height: 42px;
+    background: #fce4ec;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.testimonial-card .author strong {
+    font-size: 0.88rem;
+    color: #333;
+    display: block;
+}
+
+.testimonial-card .author small {
+    font-size: 0.76rem;
+    color: #aaa;
+}
+
