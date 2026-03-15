@@ -45,3 +45,44 @@ const PRODUCTS = [
     description: 'Lightweight liquid lipstick with a cushiony feel. Buildable color from sheer to opaque. Infused with hyaluronic acid.',
     shades: ['#E91E8C', '#FF6B9D', '#C2185B', '#AD1457']
   },
+  // ---- EYES ----
+  {
+    id: 5, category: 'eyes',
+    img: 'https://dukaan.b-cdn.net/700x700/webp/media/27d62fd8-f2e2-413b-b5b4-d2383f1578d9.jpg',
+    name: 'Midnight Glam Palette',
+    price: 12500, oldPrice: 15000,
+    rating: 4.4, reviews: 67,
+    badge: 'Sale', badgeColor: 'bg-danger',
+    description: '18 ultra-pigmented shades ranging from everyday naturals to dramatic evening glam. Buttery smooth formula.',
+    shades: ['#2C2C2C', '#8B4513', '#D2B48C', '#FFD700', '#9C27B0', '#1A237E']
+  },
+  {
+    id: 6, category: 'eyes',
+    img: 'https://sdcdn.io/cl/cl_sku_V4R301_2400x2400_0.jpg',
+    name: 'Waterproof Gel Eyeliner',
+    price: 4500, oldPrice: null,
+    rating: 4.7, reviews: 203,
+    badge: 'Bestseller', badgeColor: 'bg-warning text-dark',
+    description: 'Intense, waterproof gel eyeliner with a precision brush tip. Budge-proof formula lasts all day.',
+    shades: ['#000000', '#3D2B1F', '#1A237E', '#4A0080']
+  },
+  {
+    id: 7, category: 'eyes',
+    img: 'https://www.hauslabs.com/cdn/shop/files/Mdsngoiuehrg_8_1944x.jpg?v=1762283586',
+    name: 'Lengthening Mascara',
+    price: 5800, oldPrice: null,
+    rating: 4.9, reviews: 312,
+    badge: 'Bestseller', badgeColor: 'bg-warning text-dark',
+    description: 'Dramatic lengthening formula that adds up to 50% more length and volume. Fan-like lash effect.',
+    shades: ['#000000', '#3D2B1F']
+  },
+  {
+    id: 8, category: 'eyes',
+    img: 'https://files.sophie.co.ke/2023/05/1663066892_6996-1_5678.jpg',
+    name: 'Glitter Eyeshadow Kit',
+    price: 7500, oldPrice: 9000,
+    rating: 4.5, reviews: 78,
+    badge: 'Sale', badgeColor: 'bg-danger',
+    description: '12 intensely glittery shades. Festival-ready, long-lasting formula with primer and setting spray.',
+    shades: ['#FFD700', '#C0C0C0', '#E91E8C', '#9C27B0', '#1A237E']
+  },
