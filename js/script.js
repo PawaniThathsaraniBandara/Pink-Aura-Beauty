@@ -127,3 +127,45 @@ const PRODUCTS = [
     description: 'Blinding highlight in 4 luminous shades. Multi-reflective pearls capture light from every angle.',
     shades: ['#FFD700', '#FFDBB5', '#FFB6C1', '#C0C0C0']
   },
+   // ---- SKINCARE ----
+  {
+    id: 13, category: 'skincare',
+    img: 'https://www.merfuorganics.com/cdn/shop/files/8cde5162-b30e-4fc3-a568-8d3070c2595a_fd3a6db0-3b1f-4d11-a80d-8da41f6ef182.png?v=1766794319&width=1445',
+    name: 'Rose Glow Serum',
+    price: 8500, oldPrice: null,
+    rating: 4.5, reviews: 203,
+    badge: 'New', badgeColor: 'bg-success',
+    description: 'Rose-infused serum with hyaluronic acid, vitamin C, and retinol. Brightens and plumps in just 2 weeks.',
+    shades: null
+  },
+  {
+    id: 14, category: 'skincare',
+    img: 'https://www.saintandserenity.com/cdn/shop/files/Cloud_Cleanser_22.png?v=1751472183&width=1200',
+    name: 'Cloud Foam Cleanser',
+    price: 4200, oldPrice: null,
+    rating: 4.7, reviews: 189,
+    badge: null, badgeColor: '',
+    description: 'Gentle foaming cleanser that removes makeup and excess oil. pH-balanced with aloe vera and chamomile.',
+    shades: null
+  },
+  {
+    id: 15, category: 'skincare',
+    img: 'https://i0.wp.com/post.healthline.com/wp-content/uploads/2022/01/1826371-Neutrogena-Hydro-Boost-Water-Gel-Review-1296x728-Header-c0dcdf.jpg?w=1575',
+    name: 'Hydra-Boost Moisturizer',
+    price: 7800, oldPrice: null,
+    rating: 4.8, reviews: 156,
+    badge: 'Bestseller', badgeColor: 'bg-warning text-dark',
+    description: '72-hour hydration moisturizer with ceramides, peptides, and hyaluronic acid.',
+    shades: null
+  },
+  {
+    id: 16, category: 'skincare',
+    img: 'https://www.blushme.lk/cdn/shop/files/MEDICUBE-Deep-Lifting-Peptide-Eye-Cream-for-Face-1_800x_1d87ea30-9498-4a95-b441-410932fb25b8.png?v=1762490933&width=1080',
+    name: 'Peptide Eye Cream',
+    price: 9200, oldPrice: 11000,
+    rating: 4.6, reviews: 94,
+    badge: 'Sale', badgeColor: 'bg-danger',
+    description: 'Targets dark circles, puffiness, and fine lines. Cooling applicator tip for instant de-puffing.',
+    shades: null
+  },
+
