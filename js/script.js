@@ -467,4 +467,249 @@ function buildCard(p) {
       </div>
     </div>`;
 }
+/* ---- Render products ---- */
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  const emptyState = document.getElementById('emptyState');
+  const visibleCount = document.getElementById('visibleCount');
+  if (!grid) return;
+
+  let list = activeFilter === 'all' ? [...PRODUCTS] : PRODUCTS.filter(p => p.category === activeFilter);
+
+  if (activeSort === 'price-low') list.sort((a, b) => a.price - b.price);
+  else if (activeSort === 'price-high') list.sort((a, b) => b.price - a.price);
+  else if (activeSort === 'rating') list.sort((a, b) => b.rating - a.rating);
+
+  grid.innerHTML = list.map(buildCard).join('');
+  if (emptyState) emptyState.style.display = list.length ? 'none' : 'block';
+  if (visibleCount) visibleCount.textContent = list.length;
+}
+
+/* ---- Filter & Sort ---- */
+function initFilters() {
+  const tabs = document.querySelectorAll('.filter-tab');
+  if (!tabs.length) return;
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const cat = urlParams.get('cat');
+  if (cat) activeFilter = cat;
+
+  tabs.forEach(tab => {
+    if (tab.getAttribute('data-filter') === activeFilter) {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    }
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeFilter = tab.getAttribute('data-filter');
+      renderProducts();
+    });
+  });
+
+  const sortEl = document.getElementById('sortSelect');
+  if (sortEl) {
+    sortEl.addEventListener('change', () => {
+      activeSort = sortEl.value;
+      renderProducts();
+    });
+  }
+
+  renderProducts();
+}
+
+/* ---- Product Modal ---- */
+function openModal(productId) {
+  const p = PRODUCTS.find(x => x.id === productId);
+  if (!p) return;
+  modalProduct = p;
+
+  document.getElementById('mTitle').textContent = p.name;
+
+  // Modal image
+  const mImg = document.getElementById('mImg');
+  if (mImg) {
+    mImg.src = p.img;
+    mImg.alt = p.name;
+  }
+
+  document.getElementById('mBrand').textContent = 'PINK AURA';
+  document.getElementById('mName').textContent = p.name;
+  document.getElementById('mStars').textContent = starsHtml(p.rating) + ' (' + p.reviews + ' reviews)';
+  document.getElementById('mPrice').textContent = 'Rs.' + p.price.toLocaleString();
+
+  const oldEl = document.getElementById('mOld');
+  if (oldEl) oldEl.textContent = p.oldPrice ? 'Rs.' + p.oldPrice.toLocaleString() : '';
+
+  document.getElementById('mDesc').textContent = p.description;
+
+  const shadesWrap = document.getElementById('mShadesWrap');
+  const shadesEl = document.getElementById('mShades');
+  if (shadesWrap && shadesEl) {
+    if (p.shades && p.shades.length) {
+      shadesWrap.style.display = '';
+      shadesEl.innerHTML = p.shades.map((c, i) =>
+        `<span class="shade-dot ${i === 0 ? 'active' : ''}" style="background:${c};"
+          onclick="document.querySelectorAll('.shade-dot').forEach(d=>d.classList.remove('active'));this.classList.add('active');"
+          title="${c}"></span>`
+      ).join('');
+    } else {
+      shadesWrap.style.display = 'none';
+    }
+  }
+
+  document.getElementById('qtyVal').value = 1;
+  const modal = new bootstrap.Modal(document.getElementById('productModal'));
+  modal.show();
+}
+
+function changeQty(delta) {
+  const input = document.getElementById('qtyVal');
+  let val = parseInt(input.value) + delta;
+  if (val < 1) val = 1;
+  if (val > 10) val = 10;
+  input.value = val;
+}
+
+function modalAddCart() {
+  if (!modalProduct) return;
+  const qty = parseInt(document.getElementById('qtyVal').value);
+
+  const existing = cart.find(item => item.id === modalProduct.id);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({
+      id: modalProduct.id,
+      name: modalProduct.name,
+      price: modalProduct.price,
+      img: modalProduct.img,
+      qty: qty
+    });
+  }
+
+  updateCart();
+  showToast(modalProduct.name + ' (×' + qty + ') added to cart!');
+  bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
+}
+
+
+/* ---- Contact Form Validation ---- */
+function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  const msg = document.getElementById('message');
+  const charCount = document.getElementById('charCount');
+  if (msg && charCount) {
+    msg.addEventListener('input', () => {
+      const len = msg.value.length;
+      charCount.textContent = len + ' / 500';
+      if (len > 500) msg.value = msg.value.substring(0, 500);
+    });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let valid = true;
+
+    const fields = [
+      { id: 'firstName', errId: 'firstNameErr', check: v => v.trim().length >= 2 },
+      { id: 'lastName', errId: 'lastNameErr', check: v => v.trim().length >= 2 },
+      { id: 'email', errId: 'emailErr', check: v => /\S+@\S+\.\S+/.test(v) },
+      { id: 'subject', errId: 'subjectErr', check: v => v !== '' },
+      { id: 'message', errId: 'messageErr', check: v => v.trim().length >= 10 }
+    ];
+
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
+      const errEl = document.getElementById(f.errId);
+      if (!el || !errEl) return;
+      const ok = f.check(el.value);
+      el.classList.toggle('error', !ok);
+      errEl.classList.toggle('show', !ok);
+      if (!ok) valid = false;
+    });
+
+    const priv = document.getElementById('privacyCheck');
+    const privErr = document.getElementById('privacyErr');
+    if (priv && privErr) {
+      const ok = priv.checked;
+      privErr.classList.toggle('show', !ok);
+      if (!ok) valid = false;
+    }
+
+    if (!valid) return;
+
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = '⏳ Sending...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      form.reset();
+      if (charCount) charCount.textContent = '0 / 500';
+      const successMsg = document.getElementById('successMsg');
+      if (successMsg) {
+        successMsg.classList.remove('d-none');
+        setTimeout(() => successMsg.classList.add('d-none'), 5000);
+      }
+      btn.textContent = '📩 Send Message';
+      btn.disabled = false;
+    }, 1500);
+  });
+}
+
+function clearForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  form.reset();
+  form.querySelectorAll('input, select, textarea').forEach(el => el.classList.remove('error'));
+  form.querySelectorAll('.error-msg').forEach(el => el.classList.remove('show'));
+  const successMsg = document.getElementById('successMsg');
+  if (successMsg) successMsg.classList.add('d-none');
+  const cc = document.getElementById('charCount');
+  if (cc) cc.textContent = '0 / 500';
+}
+
+/* ---- Home page featured cards ---- */
+function initHomeCards() {
+  // Update featured cards to use images
+  const featuredData = [
+    { id: 1, img: 'https://images.unsplash.com/photo-1586717791821-3f44a563cc4c?q=80&w=600&auto=format&fit=crop' },
+    { id: 9, img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=600&auto=format&fit=crop' },
+    { id: 5, img: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=600&auto=format&fit=crop' },
+    { id: 13, img: 'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=600&auto=format&fit=crop' }
+  ];
+
+  featuredData.forEach((item, i) => {
+    const imgContainer = document.querySelector(`.product-card[data-id="${i}"] .product-img`);
+    if (imgContainer) {
+      imgContainer.innerHTML = `<img src="${item.img}" alt="product" style="width:100%;height:180px;object-fit:cover;display:block;" />`;
+      imgContainer.style.cursor = 'pointer';
+      imgContainer.onclick = () => openModal(item.id);
+    }
+  });
+}
+
+/* ---- DOMContentLoaded ---- */
+document.addEventListener('DOMContentLoaded', function () {
+  updateCart();
+  initNewsletter();
+  initFilters();
+  initContactForm();
+});
+
+/* ---- Globals ---- */
+window.addToCart = addToCart;
+window.openModal = openModal;
+window.changeQty = changeQty;
+window.modalAddCart = modalAddCart;
+window.clearForm = clearForm;
+window.openCart = openCart;
+window.updateCartQty = updateCartQty;
+window.removeFromCart = removeFromCart;
+window.showCheckout = showCheckout;
+window.hideCheckout = hideCheckout;
+window.placeOrder = placeOrder;
+
 
