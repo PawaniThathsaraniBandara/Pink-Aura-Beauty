@@ -86,3 +86,44 @@ const PRODUCTS = [
     description: '12 intensely glittery shades. Festival-ready, long-lasting formula with primer and setting spray.',
     shades: ['#FFD700', '#C0C0C0', '#E91E8C', '#9C27B0', '#1A237E']
   },
+   // ---- FACE ----
+  {
+    id: 9, category: 'face',
+    img: 'https://monabella.store/cdn/shop/files/Serum-Foundation-Shell-101.png?v=1707265598&width=1100',
+    name: 'Glow Serum Foundation',
+    price: 9500, oldPrice: 12000,
+    rating: 5.0, reviews: 89,
+    badge: 'New', badgeColor: 'bg-success',
+    description: 'Lightweight serum foundation with SPF 30. 40 skin-inclusive shades for a dewy, glass-skin finish.',
+    shades: ['#FDBCB4', '#EEA590', '#D2886F', '#C06D40', '#8D4A26', '#5C2E00']
+  },
+  {
+    id: 10, category: 'face',
+    img: 'https://d1ak51zwgmtslz.cloudfront.net/PRODUCTS_EN/8682536081658_1.jpg',
+    name: 'Invisible Setting Powder',
+    price: 6500, oldPrice: null,
+    rating: 4.6, reviews: 145,
+    badge: null, badgeColor: '',
+    description: 'Finely milled translucent powder that sets makeup for 16+ hours. Blurs pores and controls shine.',
+    shades: ['#F5E6D3', '#E8D5B5', '#C4A882']
+  },
+  {
+    id: 11, category: 'face',
+    img: 'https://kaleidocosmetics.com/cdn/shop/products/skinluminate1.jpg?v=1663143623&width=823',
+    name: 'Peachy Blush Palette',
+    price: 5200, oldPrice: null,
+    rating: 4.8, reviews: 167,
+    badge: 'New', badgeColor: 'bg-success',
+    description: '6 harmonious blush shades from soft peach to deep berry. Infused with vitamin E and rose extract.',
+    shades: ['#FFB7A5', '#E91E8C', '#FF6B6B', '#C2185B']
+  },
+  {
+    id: 12, category: 'face',
+    img: 'https://static.beautytocare.com/cdn-cgi/image/width=1440,height=1200,f=auto/media/catalog/product//m/a/maybelline-face-studio-strobing-stick-illuminating-highlighter-100-light-iridescent-9g.jpg',
+    name: 'Strobing Highlighter',
+    price: 4800, oldPrice: null,
+    rating: 4.7, reviews: 98,
+    badge: 'Bestseller', badgeColor: 'bg-warning text-dark',
+    description: 'Blinding highlight in 4 luminous shades. Multi-reflective pearls capture light from every angle.',
+    shades: ['#FFD700', '#FFDBB5', '#FFB6C1', '#C0C0C0']
+  },
