@@ -168,4 +168,166 @@ const PRODUCTS = [
     description: 'Targets dark circles, puffiness, and fine lines. Cooling applicator tip for instant de-puffing.',
     shades: null
   },
+ // ---- FRAGRANCE ----
+  {
+    id: 17, category: 'fragrance',
+    img: 'https://elansor.com/cdn/shop/files/Imperial_Aura_by_Elansor_100ml_Vanilla_Rose_Perfume_for_Women_lansor.jpg?v=1738140321',
+    name: 'Aura Rose EDP',
+    price: 18500, oldPrice: null,
+    rating: 4.9, reviews: 67,
+    badge: 'New', badgeColor: 'bg-success',
+    description: 'Intoxicating blend of Bulgarian rose, peony, and sandalwood. A feminine floral-oriental scent that lasts 8+ hours.',
+    shades: null
+  },
+  {
+    id: 18, category: 'fragrance',
+    img: 'https://kallos.co/cdn/shop/files/Nuoc_Hoa_HERA_Velvet_Night_Eau_De_Parfum_For_Women_1.jpg?v=1730891468&width=1200',
+    name: 'Velvet Night EDT',
+    price: 15200, oldPrice: 19000,
+    rating: 4.7, reviews: 43,
+    badge: 'Sale', badgeColor: 'bg-danger',
+    description: 'Notes of black cherry, jasmine, and amber musk. Sensual, sophisticated, and unforgettable.',
+    shades: null
+  },
+  {
+    id: 19, category: 'fragrance',
+    img: 'https://teonaparfum.com/storage/2023/12/pink-sugar.jpg',
+    name: 'Pink Sugar Body Mist',
+    price: 3500, oldPrice: null,
+    rating: 4.5, reviews: 112,
+    badge: null, badgeColor: '',
+    description: 'Pink sugar, vanilla, and white musk. Light and playful – perfect for everyday freshness.',
+    shades: null
+  }
+];
 
+/* ---- State ---- */
+let cart = JSON.parse(localStorage.getItem('pinkAuraCart')) || [];
+let activeFilter = 'all';
+let activeSort = 'featured';
+let modalProduct = null;
+
+/* ---- Cart ---- */
+function addToCart(name) {
+  const product = PRODUCTS.find(p => p.name === name);
+  if (!product) return;
+
+  const existing = cart.find(item => item.id === product.id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      img: product.img,
+      qty: 1
+    });
+  }
+  saveCart();
+  updateCart();
+  showToast(name + ' added to cart!');
+}
+
+function saveCart() {
+  localStorage.setItem('pinkAuraCart', JSON.stringify(cart));
+}
+
+function updateCart() {
+  const count = cart.reduce((acc, item) => acc + item.qty, 0);
+  document.querySelectorAll('#cartCount').forEach(el => el.textContent = count);
+  renderCart();
+  renderFullCart(); // For the dedicated cart page
+}
+
+function renderCart() {
+  const container = document.getElementById('cartItems');
+  if (!container) return;
+
+  if (cart.length === 0) {
+    container.innerHTML = '<div class="text-center py-4 text-muted">Your cart is empty.</div>';
+    if (document.getElementById('cartTotal')) document.getElementById('cartTotal').textContent = 'Rs.0';
+    if (document.getElementById('cartSubtotal')) document.getElementById('cartSubtotal').textContent = 'Rs.0';
+    return;
+  }
+
+  container.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <img src="${item.img}" class="cart-item-img" alt="${item.name}">
+      <div class="cart-item-info">
+        <h6>${item.name}</h6>
+        <div class="price">Rs.${item.price.toLocaleString()}</div>
+        <div class="cart-qty-ctrl mt-1">
+          <button onclick="updateCartQty(${item.id}, -1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="updateCartQty(${item.id}, 1)">+</button>
+        </div>
+      </div>
+      <div class="remove-item" onclick="removeFromCart(${item.id})">
+        <i class="fas fa-trash-alt"></i>
+      </div>
+    </div>
+  `).join('');
+
+  const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+  if (document.getElementById('cartSubtotal')) document.getElementById('cartSubtotal').textContent = 'Rs.' + subtotal.toLocaleString();
+  if (document.getElementById('cartTotal')) document.getElementById('cartTotal').textContent = 'Rs.' + subtotal.toLocaleString();
+}
+
+function renderFullCart() {
+  const container = document.getElementById('fullCartItems');
+  if (!container) return;
+
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-5">
+        <div style="font-size: 4rem; opacity: 0.2; margin-bottom: 20px;">🛒</div>
+        <h4>Your cart is empty</h4>
+        <p class="text-muted">Looks like you haven't added anything to your cart yet.</p>
+        <a href="products.html" class="btn-pink mt-3">Start Shopping</a>
+      </div>`;
+    if (document.getElementById('pageSubtotal')) document.getElementById('pageSubtotal').textContent = 'Rs.0';
+    if (document.getElementById('pageTotal')) document.getElementById('pageTotal').textContent = 'Rs.0';
+    return;
+  }
+
+  container.innerHTML = cart.map(item => `
+    <div class="card mb-3 p-3 border-0 shadow-sm" style="border-radius: 15px;">
+      <div class="row align-items-center g-3">
+        <div class="col-3 col-md-2">
+          <img src="${item.img}" class="img-fluid rounded" alt="${item.name}">
+        </div>
+        <div class="col-6 col-md-6">
+          <h6 class="mb-1">${item.name}</h6>
+          <div class="price text-pink fw-bold">Rs.${item.price.toLocaleString()}</div>
+        </div>
+        <div class="col-3 col-md-4 d-flex align-items-center justify-content-end gap-3 flex-wrap">
+          <div class="cart-qty-ctrl">
+            <button onclick="updateCartQty(${item.id}, -1)">−</button>
+            <span>${item.qty}</span>
+            <button onclick="updateCartQty(${item.id}, 1)">+</button>
+          </div>
+          <div class="remove-item ms-3" onclick="removeFromCart(${item.id})" style="cursor: pointer; color: #bbb;">
+            <i class="fas fa-trash-alt"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+  if (document.getElementById('pageSubtotal')) document.getElementById('pageSubtotal').textContent = 'Rs.' + subtotal.toLocaleString();
+  if (document.getElementById('pageTotal')) document.getElementById('pageTotal').textContent = 'Rs.' + subtotal.toLocaleString();
+
+  // Update checkout preview if on cart page
+  const preview = document.getElementById('checkoutPreview');
+  if (preview) {
+    preview.innerHTML = cart.map(item => `
+      <div class="d-flex justify-content-between small mb-1">
+        <span>${item.name} (x${item.qty})</span>
+        <span>Rs.${(item.price * item.qty).toLocaleString()}</span>
+      </div>
+    `).join('');
+    document.getElementById('checkoutTotal').textContent = 'Rs.' + subtotal.toLocaleString();
+  }
+}
