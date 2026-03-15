@@ -331,3 +331,140 @@ function renderFullCart() {
     document.getElementById('checkoutTotal').textContent = 'Rs.' + subtotal.toLocaleString();
   }
 }
+/* ---- Checkout Flow ---- */
+function showCheckout() {
+  if (cart.length === 0) {
+    showToast('Your cart is empty!');
+    return;
+  }
+  document.getElementById('cartMainView').classList.add('d-none');
+  document.getElementById('checkoutView').classList.remove('d-none');
+  window.scrollTo(0, 0);
+}
+
+function hideCheckout() {
+  document.getElementById('checkoutView').classList.add('d-none');
+  document.getElementById('cartMainView').classList.remove('d-none');
+  window.scrollTo(0, 0);
+}
+
+function placeOrder() {
+  const form = document.getElementById('checkoutForm');
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  // Generate random order ID
+  const orderId = 'PAB-' + Math.floor(Math.random() * 90000 + 10000);
+  const orderIdEl = document.getElementById('displayOrderId');
+  if (orderIdEl) orderIdEl.textContent = '#' + orderId;
+
+  // Finalize
+  cart = [];
+  saveCart();
+  updateCart();
+
+  document.getElementById('checkoutView').classList.add('d-none');
+  document.getElementById('orderSuccessView').classList.remove('d-none');
+  window.scrollTo(0, 0);
+}
+
+
+function updateCartQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty < 1) {
+    removeFromCart(id);
+  } else {
+    saveCart();
+    updateCart();
+  }
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  saveCart();
+  updateCart();
+}
+
+function openCart() {
+  const modal = new bootstrap.Modal(document.getElementById('cartModal'));
+  modal.show();
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  if (!toast) return;
+  toastMsg.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+/* ---- Scroll events ---- */
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.navbar');
+  if (nav) nav.style.boxShadow = window.scrollY > 30 ? '0 4px 20px rgba(0,0,0,0.1)' : '';
+  // const btn = document.getElementById('backTop');
+  // if (btn) btn.classList.toggle('show', window.scrollY > 350);
+});
+
+/* ---- Newsletter ---- */
+function initNewsletter() {
+  const form = document.getElementById('newsletterForm');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('nlEmail').value.trim();
+    if (!email || !/\S+@\S+\.\S+/.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    showToast('Subscribed! Check inbox for 15% off.');
+    form.reset();
+  });
+}
+
+/* ---- Stars helper ---- */
+function starsHtml(rating) {
+  let s = '';
+  for (let i = 1; i <= 5; i++) {
+    if (i <= Math.floor(rating)) s += '★';
+    else if (i - rating < 1) s += '½';
+    else s += '☆';
+  }
+  return s;
+}
+
+/* ---- Build product card with image ---- */
+function buildCard(p) {
+  const badge = p.badge
+    ? `<span class="badge ${p.badgeColor}" style="position:absolute;top:10px;left:10px;font-size:0.7rem;z-index:2;">${p.badge}</span>`
+    : '';
+  const oldPrice = p.oldPrice
+    ? `<span class="old-price">Rs.${p.oldPrice.toLocaleString()}</span>`
+    : '';
+  return `
+    <div class="col-6 col-md-4 col-lg-3 product-item" data-cat="${p.category}">
+      <div class="product-card">
+        <div class="product-img" onclick="openModal(${p.id})" style="cursor:pointer; position:relative; padding:0; overflow:hidden;">
+          <img src="${p.img}" alt="${p.name}" 
+               style="width:100%;height:180px;object-fit:cover;display:block;"
+               onerror="this.style.display='none';this.parentElement.style.fontSize='3.5rem';this.parentElement.innerHTML+='🌸';" />
+          ${badge}
+        </div>
+        <div class="product-body">
+          <div class="cat-tag">${p.category.charAt(0).toUpperCase() + p.category.slice(1)}</div>
+          <h5 onclick="openModal(${p.id})" style="cursor:pointer;">${p.name}</h5>
+          <div class="stars">${starsHtml(p.rating)} <span>(${p.reviews})</span></div>
+          <div class="d-flex align-items-center justify-content-between">
+            <div><span class="price">Rs.${p.price.toLocaleString()}</span>${oldPrice}</div>
+            <button class="add-btn" onclick="addToCart('${p.name.replace(/'/g, "\\'")}')">+ Add</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
