@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contact Pink Aura Beauty – reach our team for orders, questions, or feedback." />
+    <title>Contact | Pink Aura Beauty</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">💄 Pink Aura Beauty</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                    <li class="nav-item ms-2">
+                        <a href="cart.html" class="btn-pink" style="padding:8px 20px; font-size:0.85rem;">
+                            🛍️ Cart <span id="cartCount" class="badge bg-white text-danger ms-1">0</span>
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero text-center"
+        style="background: linear-gradient(rgba(136, 14, 79, 0.5), rgba(136, 14, 79, 0.5)), url('https://carsoncumberbatch-2023.sgp1.cdn.digitaloceanspaces.com/images/contact/carson-contact-us-hero-image2.jpg'); background-size: cover; background-position: center;">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="index.html" style="color: #c2185b; font-weight: 600;">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active">Contact</li>
+                </ol>
+            </nav>
+            <h1>Get in <span>Touch</span></h1>
+            <p>We'd love to hear from you!</p>
+        </div>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row g-5">
+
+                <!-- Info -->
+                <div class="col-lg-4">
+                    <h5 style="font-size:1.1rem; font-weight:700; color:#222; margin-bottom:20px;">Contact Information
+                    </h5>
+
+                    <div class="contact-info-card">
+                        <div class="info-item">
+                            <div class="ico-box"><i class="fas fa-envelope"></i></div>
+                            <div class="info-text">
+                                <small>Email Us</small>
+                                <strong>pawanithathsarani2002@gmail.com</strong>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="ico-box"><i class="fas fa-phone-alt"></i></div>
+                            <div class="info-text">
+                                <small>Call Anytime</small>
+                                <strong>+94 76 143 8538</strong>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="ico-box"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="info-text">
+                                <small>Visit Store</small>
+                                <strong>No 02, Colombo 07, Sri Lanka</strong>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="ico-box"><i class="fas fa-clock"></i></div>
+                            <div class="info-text">
+                                <small>Working Hours</small>
+                                <strong>Mon–Sat: 9AM–7PM | Sun: 10AM–2PM</strong>
+                            </div>
+                        </div>
+
+                        <!-- Map placeholder -->
+                        <div class="map-placeholder-box">
+                            <div class="map-icon"><i class="fas fa-map-marked-alt"></i></div>
+                            <p class="mb-0">Find us on Map</p>
+                            <a href="https://maps.google.com/?q=Colombo+07,+Sri+Lanka" target="_blank" class="view-map-btn">Get Directions</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="col-lg-8">
+                    <div class="form-card">
+                        <h5 style="font-size:1.1rem; font-weight:700; color:#222; margin-bottom:20px;">Send Us a Message
+                        </h5>
+                        <form id="contactForm" novalidate>
+                            <!-- Name Row -->
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName">
+                                    <div class="error-msg" id="firstNameErr">Please enter your first name.</div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName">
+                                    <div class="error-msg" id="lastNameErr">Please enter your last name.</div>
+
+                                </div>
+                            </div>
+
+                            <!-- Email & Phone -->
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email">
+                                    <div class="error-msg" id="emailErr">Please enter a valid email.</div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone">
+                                </div>
+                            </div>
+
+                            <!-- Subject -->
+                            <div class="mb-3">
+                                <label for="subject">Subject *</label>
+                                <select id="subject">
+                                    <option value="">Select a topic...</option>
+
+                                    <option value="order">Order Inquiry</option>
+                                    <option value="product">Product Question</option>
+                                    <option value="return">Return / Refund</option>
+                                    <option value="shipping">Shipping Info</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <div class="error-msg" id="subjectErr">Please select a subject.</div>
+                            </div>
+
+                            <!-- Message -->
+                            <div class="mb-3">
+                                <label for="message">Your Message *</label>
+                                <textarea id="message" placeholder="How can we help you?"></textarea>
+                                <div class="d-flex justify-content-between">
+                                    <div class="error-msg" id="messageErr">Message must be at least 10 characters.</div>
+                                    <small id="charCount" class="text-muted mt-1">0 / 500</small>
+                                </div>
+
+
+                            </div>
+
+                            <!-- How did you hear -->
+                            <div class="mb-3">
+                                <label for="hearAbout">How did you hear about us?</label>
+                                <select id="hearAbout">
+                                    <option>Select...</option>
+                                    <option value="instagram">Instagram</option>
+                                    <option value="tiktok">TikTok</option>
+                                    <option value="friend">Friend / Family</option>
+                                    <option value="google">Google</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <!-- Privacy checkbox -->
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="privacyCheck" />
+                                <label class="form-check-label small" for="privacyCheck">
+                                    I agree to the <a href="#" style="color: #c2185b; font-weight: 600;">Privacy
+                                        Policy</a> *
+                                </label>
+                                <div class="error-msg" id="privacyErr">You must agree to the Privacy Policy.</div>
+
+                            </div>
+                            <!-- Buttons -->
+                            <div class="d-flex gap-3 flex-wrap">
+                                <button type="submit" class="btn-pink" id="submitBtn">📩 Send Message</button>
+                                <button type="button" class="btn-outline" onclick="clearForm()">↺ Clear</button>
+                            </div>
+
+                            <!-- Success Message -->
+                            <div id="successMsg"
+                                class="alert alert-success d-none mt-4 animate__animated animate__fadeIn"
+                                style="background-color: #d1e7dd; color: #0f5132; border-color: #badbcc; border-radius: 10px; padding: 15px;">
+                                <i class="fas fa-check-circle me-2"></i> <strong>Success!</strong> Your message has been
+                                sent successfully.
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="brand">💄 Pink Aura Beauty</div>
+                    <p>Luxury makeup and skincare crafted for every beauty lover.</p>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6>Shop</h6>
+                    <ul>
+                        <li><a href="products.html?cat=lips">Lips</a></li>
+                        <li><a href="products.html?cat=eyes">Eyes</a></li>
+                        <li><a href="products.html?cat=face">Face</a></li>
+                        <li><a href="products.html?cat=skincare">Skincare</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6>Help</h6>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Shipping</a></li>
+                        <li><a href="contact.html">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <h6>Contact</h6>
+                    <ul>
+                        <li><a href="mailto:pawanithathsarani2002@gmail.com">📧 pawanithathsarani2002@gmail.com</a></li>
+                        <li><a href="tel:+94761438538">📞 +94761438538</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2026 Pink Aura Beauty. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Your 🛍️ Shopping Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItems">
+                        <!-- Items injected here -->
+                    </div>
+                    <div class="cart-summary">
+                        <div class="cart-total-row">
+                            <span>Subtotal</span>
+                            <span id="cartSubtotal">Rs.0</span>
+                        </div>
+                        <div class="cart-total-row">
+                            <span>Shipping</span>
+                            <span>FREE</span>
+                        </div>
+                        <div class="cart-total-row grand-total">
+                            <span>Total</span>
+                            <span id="cartTotal">Rs.0</span>
+                        </div>
+                    </div>
+                    <button class="btn-pink w-100 mt-3">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+
+</html>
