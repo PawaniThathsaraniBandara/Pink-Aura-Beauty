@@ -179,7 +179,7 @@ After completing this project:
 You can access the project here:
 
 ```
-https://github.com/PawaniThathsaraniBandara/pink-aura-beauty
+https://github.com/PawaniThathsaraniBandara/Pink-Aura-Beauty.git
 ```
 
 ---
