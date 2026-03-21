@@ -138,6 +138,31 @@ These colors help create a modern and elegant beauty-themed user interface.
 
 ---
 
+
+# Backend Setup & Installation
+
+To run **Pink Aura Beauty** on your local computer, you will need **XAMPP** (or a similar PHP/MySQL environment).
+
+##  How to Run the Project using XAMPP
+
+1.  **Download XAMPP**: Install XAMPP if you haven't already ([apachefriends.org](https://www.apachefriends.org/)).
+2.  **Move Files**: Copy the project folder into the XAMPP installation directory:
+    *   Path: `C:\xampp\htdocs\pink-aura-beauty`
+3.  **Start Services**: Open the **XAMPP Control Panel** and click **Start** for both **Apache** and **MySQL**.
+4.  **Launch**: Open your browser and go to: `http://localhost/pink-aura-beauty/index.html`
+
+##  How to Import the Database
+
+1.  **Open phpMyAdmin**: Go to `http://localhost/phpmyadmin/` in your browser.
+2.  **Create Database**: Click on **New**, enter the name `pink_aura_beauty`, and click **Create**.
+3.  **Import Source**:
+    *   Choose the newly created database.
+    *   Click on the **Import** tab at the top.
+    *   Click **Choose File** and select `pink_aura_beauty.sql` from the project folder.
+    *   Scroll down and click **Import**.
+4.  **Connection**: Ensure your PHP files match these credentials (XAMPP Default: Host: `localhost`, User: `root`, Password: "").
+---
+
 # Expected Outcome
 
 After completing this project:
