@@ -188,4 +188,3 @@ https://github.com/PawaniThathsaraniBandara/pink-aura-beauty
 
 **Pawani Thathsarani**
 
-Web Design Project – 2026
